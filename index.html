@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+     <form name="myform" onsubmit="searchID();return false;">
+      <label>ID：<input type="number" name="id"></label>   
+      <input type="button" value="検索する" onclick="searchID();">
+    </form>
+    <div id="result">検索結果がでます</div>
+  <table>
+      <?
+        // スプレッドシートからデータを取得
+        var data = getData();
+        
+        // テーブルの見出し作成
+        output.append('<tr>');
+        output.append('<th>' + data[0][0] + '</th>');
+        output.append('<th>' + data[0][1] + '</th>');
+        output.append('<th>' + data[0][2] + '</th>');
+        output.append('</tr>');
+        
+        // テーブルを作成
+        for(var i=1;i<data.length;i++){
+          output.append('<tr>');
+          output.append('<td>' + data[i][0] + '</td>');
+          output.append('<td>' + data[i][1] + '</td>');
+          output.append('<td>' + data[i][2] + '</td>');
+          output.append('</tr>');
+        }
+      ?>
+   </table>
+  </body>
+  <script>
+    function updateResult(result) {
+      document.getElementById("result").textContent = result;
+    }
+    function searchID() {
+      var text = document.myform.id.value;
+  
+      if(text.length === 0) {
+          updateResult('文字が入力されていません！');
+          return;
+      }
+      var id = parseInt(text);
+      google.script.run.withSuccessHandler(updateResult).searchID(id);     
+    }
+  </script>
+</html>
+
+
