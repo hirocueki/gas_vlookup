@@ -1,3 +1,3 @@
 # gas_vlookup
 
-Google App Scripts をつかって、スプレッドシートの値を検索（VLOOKUP的な）するサンプル
+Google App Scriptsをつかって、スプレッドシートの値を検索（VLOOKUP的な）するサンプル
